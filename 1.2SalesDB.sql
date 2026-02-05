@@ -83,32 +83,32 @@ INSERT INTO address (addressID, street, localy, city, postcode, state_s) VALUES
 (5, '220 E Chicago Ave', 'Museo de Arte Contemporáneo', 'Chicago', ' 60611', 'Illinois');
 
 INSERT INTO customer (customerID, name, phone, email, addressID) VALUES
-(1, 'John Smith', '312-555-0101', 'john.smith@email.com', 1),
-(2, 'Maria Garcia', '312-555-0102', 'maria.garcia@email.com', 2),
-(3, 'Robert Johnson', '312-555-0103', 'robert.j@email.com', 3),
-(4, 'Lisa Wang', '312-555-0104', 'lisa.wang@email.com', 4),
-(5, 'David Brown', '312-555-0105', 'david.brown@email.com', 5);
+(1, 'Eddier Vargas', '312-555-0101', 'eddyr.va@gmail.com', 1),
+(2, 'Armando Garcia', '312-555-0102', 'armando.garcia@gmail.com', 2),
+(3, 'Adrian Morales', '312-555-0103', 'adrian_mo@gmail.com', 3),
+(4, 'Jayson Angeles', '312-555-0104', 'jaayson@gmail.com', 4),
+(5, 'Ivan Jimenez', '312-555-0105', 'maachi_31@gmail.com', 5);
 
 INSERT INTO supplier (supplierID, name, phone, email, addressID) VALUES
-(1, 'Tech Supplies Inc.', '312-555-0201', 'sales@techsupplies.com', 1),
-(2, 'Office Furniture Co.', '312-555-0202', 'orders@officefurn.com', 2),
-(3, 'Stationery World', '312-555-0203', 'info@stationeryworld.com', 3),
-(4, 'Electronics Plus', '312-555-0204', 'sales@electronicsplus.com', 4),
-(5, 'Business Solutions', '312-555-0205', 'contact@bizsolutions.com', 5);
+(1, 'Micro Center', '312-555-0201', 'sales@microcenter.com', 1),
+(2, 'Oak Brook', '312-555-0202', 'sales@oakbrook.com', 2),
+(3, 'Chicago Gadgets', '312-555-0203', 'sales@gadchicago.com', 3),
+(4, 'Bestbuy', '312-555-0204', 'sales@bestbuy.com', 4),
+(5, 'ReVamp Electronics', '312-555-0205', 'sales@revamp.com', 5);
 
 INSERT INTO product (productID, name, type, amount, price, detail, supplierID) VALUES
-(1, 'Laptop Dell', 'Electronics', '1 unit', 1299.99, '15-inch laptop with 16GB RAM', 4),
-(2, 'Office Chair', 'Furniture', '1 unit', 299.99, 'Ergonomic office chair', 2),
+(1, 'Laptop Dell', 'Electronics', '1 unit', 1429.33, 'Dell Latitud 5431 laptop with 16GB RAM', 5),
+(2, 'Office Chair', 'Furniture', '1 unit', 499.99, 'Ergonomic office chair', 2),
 (3, 'Notebook Set', 'Stationery', '10 pieces', 24.99, 'Premium quality notebooks', 3),
-(4, 'Wireless Mouse', 'Electronics', '1 unit', 49.99, 'Bluetooth wireless mouse', 1),
+(4, 'Wireless Mouse', 'Electronics', '1 unit', 49.99, 'Bluetooth wireless mouse', 4),
 (5, 'Desk Lamp', 'Furniture', '1 unit', 89.99, 'LED desk lamp with adjustable arm', 5);
 
 INSERT INTO customerOrder (orderID, date, total, paymentMethod, status, customerID) VALUES
-(1001, '2024-01-15', 329.97, 'Credit Card', 'Delivered', 1),
-(1002, '2024-01-16', 1299.99, 'PayPal', 'Shipped', 2),
-(1003, '2024-01-17', 549.97, 'Credit Card', 'Processing', 3),
-(1004, '2024-01-18', 74.97, 'Debit Card', 'Delivered', 4),
-(1005, '2024-01-19', 199.99, 'Credit Card', 'Pending', 5);
+(1001, '2024-01-10', 329.97, 'Credit Card', 'Delivered', 1),
+(1002, '2024-01-12', 1299.99, 'PayPal', 'Shipped', 2),
+(1003, '2024-03-17', 549.97, 'Credit Card', 'Processing', 3),
+(1004, '2024-02-20', 74.97, 'Debit Card', 'Delivered', 4),
+(1005, '2024-01-31', 199.99, 'Credit Card', 'Pending', 5);
 
 INSERT INTO customerAddress (customerAddressID, type, position, customerID, addressID) VALUES
 (1, 'Billing', 'Primary', 1, 1),
