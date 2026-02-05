@@ -23,7 +23,7 @@ CREATE TABLE customer(
 CREATE TABLE supplier(
 	supplierID      INT NOT NULL,
 	name            VARCHAR(80) NOT NULL,
-	phone           INT NOT NULL,
+	phone           VARCHAR(15) NOT NULL,
     email           VARCHAR(80) NOT NULL,       
 	addressID       INT NOT NULL,
 	PRIMARY KEY(supplierID),
@@ -90,14 +90,14 @@ INSERT INTO customer (customerID, name, phone, email, addressID) VALUES
 (5, 'David Brown', '312-555-0105', 'david.brown@email.com', 5);
 
 INSERT INTO supplier (supplierID, name, phone, email, addressID) VALUES
-(1, 'Tech Supplies Inc.', '3125550201', 'sales@techsupplies.com', 1),
-(2, 'Office Furniture Co.', '3125550202', 'orders@officefurn.com', 2),
-(3, 'Stationery World', '3125550203', 'info@stationeryworld.com', 3),
-(4, 'Electronics Plus', '3125550204', 'sales@electronicsplus.com', 4),
-(5, 'Business Solutions', '3125550205', 'contact@bizsolutions.com', 5);
+(1, 'Tech Supplies Inc.', '312-555-0201', 'sales@techsupplies.com', 1),
+(2, 'Office Furniture Co.', '312-555-0202', 'orders@officefurn.com', 2),
+(3, 'Stationery World', '312-555-0203', 'info@stationeryworld.com', 3),
+(4, 'Electronics Plus', '312-555-0204', 'sales@electronicsplus.com', 4),
+(5, 'Business Solutions', '312-555-0205', 'contact@bizsolutions.com', 5);
 
 INSERT INTO product (productID, name, type, amount, price, detail, supplierID) VALUES
-(1, 'Laptop Pro', 'Electronics', '1 unit', 1299.99, '15-inch laptop with 16GB RAM', 4),
+(1, 'Laptop Dell', 'Electronics', '1 unit', 1299.99, '15-inch laptop with 16GB RAM', 4),
 (2, 'Office Chair', 'Furniture', '1 unit', 299.99, 'Ergonomic office chair', 2),
 (3, 'Notebook Set', 'Stationery', '10 pieces', 24.99, 'Premium quality notebooks', 3),
 (4, 'Wireless Mouse', 'Electronics', '1 unit', 49.99, 'Bluetooth wireless mouse', 1),
@@ -124,10 +124,10 @@ INSERT INTO customerAddress (customerAddressID, type, position, customerID, addr
 
 INSERT INTO orderProduct (orderProductID, quanty, price, orderID, productID) VALUES
 (1, 1, 299.99, 1001, 2),
-(2, 1, 29.99, 1001, 6),
+(2, 1, 29.99, 1001, 3),
 (3, 1, 1299.99, 1002, 1),
 (4, 1, 299.99, 1003, 2),
 (5, 1, 49.99, 1003, 4),
-(6, 1, 199.99, 1003, 8),
+(6, 1, 199.99, 1003, 5),
 (7, 3, 24.99, 1004, 3),
-(8, 1, 199.99, 1005, 8);
+(8, 1, 199.99, 1005, 2);
