@@ -104,7 +104,7 @@ Consultas
 
 **Salida** 📌
 
-   ![Resultado de consulta 1](TABLA5.png)
+   ![Resultado de consulta 1](TABLA6.png)
 
 7. Productos y su proveedor: *Lista el nombre del producto y el nombre de su proveedor*.
    
