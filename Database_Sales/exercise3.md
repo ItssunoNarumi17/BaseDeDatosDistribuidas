@@ -65,32 +65,35 @@ Consultas
 3. Productos con precio mayor a 200: *Lista los productos cuyo precio sea mayor a 200*.
    
 **Solución** ✅
-
-   TODO script SQL
+```sql
+   select * from product where price > 200;
+```
 
 **Salida** 📌
 
-   TODO listado de atributos y tuplas
+   ![Resultado de consulta 1](TABLA3.png)
 
 4. Pedidos ordenados por fecha: *Muestra todos los pedidos ordenados desde el más reciente al más antiguo*.
    
 **Solución** ✅
-
-   TODO script SQL
+```sql
+    select * from customerOrder order by date desc;
+```
 
 **Salida** 📌
 
-   TODO listado de atributos y tuplas
+   ![Resultado de consulta 1](TABLA4.png)
    
 5. Primeros 5 proveedores: *Obtén los primeros 5 proveedores ordenados alfabéticamente por nombre*.
    
 **Solución** ✅
-
-   TODO script SQL
+```sql
+    SELECT * FROM supplier ORDER BY name ASC;
+```
 
 **Salida** 📌
 
-   TODO listado de atributos y tuplas
+   ![Resultado de consulta 1](TABLA5.png)
 
 6. Clientes y su ciudad: *Muestra el nombre del cliente y la ciudad donde vive*.
    
