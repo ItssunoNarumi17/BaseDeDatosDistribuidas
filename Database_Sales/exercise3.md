@@ -42,7 +42,7 @@ Consultas
    
 **Solución** ✅
 ```sql
-   select customerID, name, email from customer;
+   SELECT customerID, name, email FROM customer;
 ```
 
 **Salida** 📌
@@ -55,7 +55,7 @@ Consultas
 **Solución** ✅
 
    ```sql
-   select * from address where city = 'Chicago';
+   SELECT * FROM address WHERE city = 'Chicago';
    ```
 
 **Salida** 📌
@@ -66,7 +66,7 @@ Consultas
    
 **Solución** ✅
 ```sql
-   select * from product where price > 200;
+   SELECT * FROM product WHERE price > 200;
 ```
 
 **Salida** 📌
@@ -77,7 +77,7 @@ Consultas
    
 **Solución** ✅
 ```sql
-    select * from customerOrder order by date desc;
+    SELECT * FROM customerOrder ORDER BY date DESC;
 ```
 
 **Salida** 📌
@@ -98,12 +98,13 @@ Consultas
 6. Clientes y su ciudad: *Muestra el nombre del cliente y la ciudad donde vive*.
    
 **Solución** ✅
-
-   TODO script SQL
+```sql
+    SELECT customer.name, address.city FROM customer JOIN address ON customer.addressID = address.addressID;
+```
 
 **Salida** 📌
 
-   TODO listado de atributos y tuplas
+   ![Resultado de consulta 1](TABLA5.png)
 
 7. Productos y su proveedor: *Lista el nombre del producto y el nombre de su proveedor*.
    
