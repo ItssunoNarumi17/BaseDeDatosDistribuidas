@@ -41,22 +41,26 @@ Consultas
 1. Listar todos los clientes: *Obtén el customerID, nombre y email de todos los clientes*.
    
 **Solución** ✅
-
-   TODO script SQL
+```sql
+   select customerID, name, email from customer;
+```
 
 **Salida** 📌
 
-   TODO listado de atributos y tuplas
+   ![Resultado de consulta 1](TABLA1.png)
    
-2. Direcciones en una ciudad específica: *Muestra todas las direcciones que estén en la ciudad de Madrid*.
+   
+2. Direcciones en una ciudad específica: *Muestra todas las direcciones que estén en la ciudad de Chicago*.
    
 **Solución** ✅
 
-   TODO script SQL
+   ```sql
+   select * from address where city = 'Chicago';
+   ```
 
 **Salida** 📌
 
-   TODO listado de atributos y tuplas
+   ![Resultado de consulta 1](TABLA2.png)
    
 3. Productos con precio mayor a 200: *Lista los productos cuyo precio sea mayor a 200*.
    
