@@ -109,22 +109,24 @@ Consultas
 7. Productos y su proveedor: *Lista el nombre del producto y el nombre de su proveedor*.
    
 **Solución** ✅
-
-   TODO script SQL
+```sql
+    SELECT product.name, supplier.name FROM product JOIN supplier ON product.supplierID = supplier.supplierID;
+```
 
 **Salida** 📌
 
-   TODO listado de atributos y tuplas
+   ![Resultado de consulta 1](TABLA7.png)
 
 8. Pedidos de un cliente específico: *Muestra todos los pedidos realizados por el cliente con customerID = 10*.
    
 **Solución** ✅
-
-   TODO script SQL
+```sql
+    SELECT * FROM customerOrder WHERE customerID = 5;
+```
 
 **Salida** 📌
 
-   TODO listado de atributos y tuplas
+   ![Resultado de consulta 1](TABLA8.png)
 
 9. Cantidad de productos en cada pedido: *Muestra el ID del pedido y la cantidad de productos comprados en cada uno*.
    
