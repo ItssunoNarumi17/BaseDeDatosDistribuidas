@@ -131,3 +131,32 @@ INSERT INTO orderProduct (orderProductID, quanty, price, orderID, productID) VAL
 (6, 1, 199.99, 1003, 5),
 (7, 3, 24.99, 1004, 3),
 (8, 1, 199.99, 1005, 2);
+
+--Exercise 3. Sentencias de consultas
+1. Listar todos los clientes: *Obtén el customerID, nombre y email de todos los clientes*.
+   SELECT customerID, name, email FROM customer;
+
+2. Direcciones en una ciudad específica: *Muestra todas las direcciones que estén en la ciudad de Chicago*.
+   SELECT * FROM address WHERE city = 'Chicago';
+
+3. Productos con precio mayor a 200: *Lista los productos cuyo precio sea mayor a 200*.
+   SELECT * FROM product WHERE price > 200;
+
+4. Pedidos ordenados por fecha: *Muestra todos los pedidos ordenados desde el más reciente al más antiguo*.
+    SELECT * FROM customerOrder ORDER BY date DESC;
+
+5. Primeros 5 proveedores: *Obtén los primeros 5 proveedores ordenados alfabéticamente por nombre*.
+    SELECT * FROM supplier ORDER BY name ASC;
+
+6. Clientes y su ciudad: *Muestra el nombre del cliente y la ciudad donde vive*.
+    SELECT customer.name, address.city FROM customer JOIN address ON customer.addressID = address.addressID;
+
+7. Productos y su proveedor: *Lista el nombre del producto y el nombre de su proveedor*.
+    SELECT product.name, supplier.name FROM product JOIN supplier ON product.supplierID = supplier.supplierID;
+
+8. Pedidos de un cliente específico: *Muestra todos los pedidos realizados por el cliente con customerID = 10*.
+	SELECT * FROM customerOrder WHERE customerID = 5;
+
+9. Cantidad de productos en cada pedido: *Muestra el ID del pedido y la cantidad de productos comprados en cada uno*.
+
+10. Clientes con dirección de envío: *Lista los clientes que tienen una dirección de tipo Shipping*.
