@@ -91,19 +91,21 @@ Nota. Para comodida visual, se trabajo en la versión 8.0 de MySQL Workbench, ac
 Para esto, también es importante mencionar que se tuvo que tener un poco de conocimiento básico de *Redes* para poder configurar algunas IP`s, ya que la conexión para la *Replicación* se hará mediante un host como Red.
 _______________________________
 
-3. Con el modelo, procedemos a nuestro *MySQL*, en el cual por instancia local tendremos que ingresar la contraseña que se configuro al momento de la instalación.
+# *Creación de BD*
 
-4. Una vez dentro, procedemos a crear nuestra *base de datos*.
+1. Con el modelo, procedemos a nuestro *MySQL*, en el cual por instancia local tendremos que ingresar la contraseña que se configuro al momento de la instalación.
+
+2. Una vez dentro, procedemos a crear nuestra *base de datos*.
    ```sql
    mysql> CREATE DATABASE ICPC_Mexico;
    ```
    
-5. Usamos la *base de datos* ya creada.
+3. Usamos la *base de datos* ya creada.
    ```sql
    mysql> USE ICPC_Mexico;
    ```
 
-6. Ya en la *base de datos*, ingresamos las sentencias *SQL* para crear las tablas.
+4. Ya en la *base de datos*, ingresamos las sentencias *SQL* para crear las tablas.
    ```sql
        mysql>
              CREATE TABLE Equipo (
@@ -173,5 +175,45 @@ _______________________________
 
    ```
 
-   
+5. Con las tablas ya en nuestra *base de datos*, podemos proceder a poblarla.
+   ```sql
+       mysql>
+              INSERT INTO Equipo (id_equipo, nombre_equipo, id_coach, id_cocoach, id_suplente)
+              VALUES (1, 'Equipo Alfa', 1, 2, 4),
+              (2, 'Equipo Beta', 3, 2, 5);
 
+              INSERT INTO Concursante (id_concursante, nombre, a_paterno, a_materno, correo, fecha_inicio_estudios, fecha_fin_estudios, edad, id_equipo)
+              VALUES (1, 'Carlos', 'Ruiz', 'Gómez', 'carlos@uni.mx', '2022-08-01', '2026-06-30', 22, 1),
+              (2, 'Sofía', 'Martínez', 'López', 'sofia@uni.mx', '2021-08-01', '2025-06-30', 23, 2);
+
+              INSERT INTO Coach (id_coach, nombre, a_paterno, a_materno, correo, id_equipo)
+              VALUES (1, 'Juan', 'Pérez', 'Ramírez', 'juan@uni.mx', 1),
+              (3, 'Luis', 'Hernández', 'Torres', 'luis@uni.mx', 2);
+
+              INSERT INTO Competencia (id_competencia, tipo, fecha)
+              VALUES (1, 'Clasificatoria 1', '2026-05-10'),
+              (2, 'Repechaje', '2026-09-15');
+
+              INSERT INTO Problema (id_problema, nombre, descripcion, id_competencia)
+              VALUES (1, 'A', 'Algoritmos de grafos - BFS/DFS', 1),
+              (2, 'B', 'Programación dinámica - DP', 1);
+
+              INSERT INTO Ranking (id_rank, posicion, puntaje_fecha, id_equipo, id_competencia)
+              VALUES (1, 1, 280, 1, 1),
+              (2, 2, 200, 2, 1);
+   
+   ```
+
+# *Conexión de los dispositivos*
+_______________________________
+1. Para hacer la conexión, se hará de manera inalámbrica mediante una red. En uno de los dispositivo se habilita la opcion de *Zona inalámbrica* en la cual se conectaran los dispositivos necesarios. A la cual se le configurara una dirección *IP* para poder realizar la conxión.
+
+
+2. Posteriormente, con la configuración realizada podemos conectar los dispositivos mediante la *Red* a la computadora que funcionara como router.
+
+
+3. Para poder hacer la conexión mediante sentencias, es necesario modificar un archivo de *MySQL*, ubicado en la carpeta *Program Data* (puede que no sea visible, pero dando click derecho/ver archivos oculto es posible visualizar) llamado *my.ini* en el cual se modificaran algunas partes de dicho archivo para así poder realizar lo que necesitamos.
+Este podría ser un ejemplo de ruta para dicha carpeta:
+```
+    C:\ProgramData\MySQL\MySQL Server 8.0
+```
