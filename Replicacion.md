@@ -1,1 +1,0 @@
-## *Replicación de BD*
