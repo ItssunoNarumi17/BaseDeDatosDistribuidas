@@ -13,4 +13,6 @@ el docente simulando un caso real de una consulta para la realización de un *SG
 tomó el rol de un cliente explicando su caso, mientras que nosotros podíamos hacer preguntas
 para tener mejor informacón.
 
-![Representación Visual la Idea del Cliente](
+![Representación Visual la Idea del Cliente](Ejemplo.jpep)
+
+Se siguió esta t
