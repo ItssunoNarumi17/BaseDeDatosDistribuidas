@@ -283,4 +283,6 @@ Buscando los servicios para proceder a hacer click derecho y presionar reiniciar
 
 # *Creación de usuario*
 _______________________________
+
+Ahora con lo anterior terminado, ahora lo unico faltante sería crear el usuario el cual tendrá
   
