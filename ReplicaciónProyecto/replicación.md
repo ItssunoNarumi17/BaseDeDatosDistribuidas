@@ -284,5 +284,17 @@ Buscando los servicios para proceder a hacer click derecho y presionar reiniciar
 # *Creación de usuario*
 _______________________________
 
-Ahora con lo anterior terminado, ahora lo unico faltante sería crear el usuario el cual tendrá
-  
+Ahora con lo anterior terminado, ahora lo unico faltante sería crear el usuario el cual tendrá el acceso a la base de datos del servidor.
+
+En la terminal de *MySQL Workbench* se ejecuntan los siguientes comandos:
+ -En la primera linea se declara la creación del usuario, junto con la dirección IP del segundo nodo, asi mismo, se declara la contraseña que se le dará a este usuario.
+ -En la segunda linea se declaran los privilegios que este mismo tendrá.
+ -Y por ultimo actualizamos los privilegios, donde se reporta el usuario y IP del servidor, con intencion de que funcionen de manera correcta.
+  ```sql
+    mysql>
+     CREATE USER 'Usuario'@'192.168.100.102' INDENTIFIED WITH mysql_native_password       BY '123456789';
+      GRANT ALL PRIVILEGES ON *.* TO 'Usuario'@'192.168.100.101' WITH GRAND OPTION;
+      FLUSH PRIVILEGES;
+  ```
+
+Con todo esto, el usuario ya tendría el permiso y poder de acceder a la base de datos para poder realizar operaciones en ella.
