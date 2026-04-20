@@ -20,7 +20,7 @@ Se siguió esta representación para poder realizar todo lo pertinente para la p
 _______________________________
 1. Una vez analizado e interpretados los *datos*, procedemos a listar los datos para poder realizar un *modelo ER*
 
-   **Modelo ER o MER**
+   **Modelo ER (MER)**
    
    ```mermaid
    erDiagram
@@ -81,3 +81,97 @@ _______________________________
     Competencia ||--o{ Problema : "incluye"
     Competencia ||--o{ Ranking : "genera"
    ```
+
+2. Una vez teniendo el modelo así, podemos empezar a modelar la *BD* de manera más comoda, entendiendo las relaciones que pueden tener cada una de las entidades en la base de datos.
+
+_______________________________
+Nota. Para comodida visual, se trabajo en la versión 8.0 de MySQL Workbench, aclarando algunos puntos:
+  -Todo se trabajara mediante sentencias SQL de MySQL (se adjuntaran al reporte).
+  -Las creaciones y conexión de las bases de datos son de la forma antes mencionada.
+Para esto, también es importante mencionar que se tuvo que tener un poco de conocimiento básico de *Redes* para poder configurar algunas IP`s, ya que la conexión para la *Replicación* se hará mediante un host como Red.
+_______________________________
+
+3. Con el modelo, procedemos a nuestro *MySQL*, en el cual por instancia local tendremos que ingresar la contraseña que se configuro al momento de la instalación.
+
+4. Una vez dentro, procedemos a crear nuestra *base de datos*.
+   ```sql
+   mysql> CREATE DATABASE ICPC_Mexico;
+   ```
+   
+5. Usamos la *base de datos* ya creada.
+   ```sql
+   mysql> USE ICPC_Mexico;
+   ```
+
+6. Ya en la *base de datos*, ingresamos las sentencias *SQL* para crear las tablas.
+   ```sql
+       mysql>
+             CREATE TABLE Equipo (
+             id_equipo	   	INT 	       NOT NULL AUTO_INCREMENT,
+             nombre_equipo 	VARCHAR(100) NOT NULL,
+             id_coach 		  INT 	       NOT NULL,
+             id_cocoach 		INT          NOT NULL,
+             id_suplente 	  INT          NOT NULL,
+             PRIMARY KEY		(id_equipo)
+              );
+
+            CREATE TABLE Concursante (
+            id_concursante		      INT 	       NOT NULL AUTO_INCREMENT,
+            nombre			            VARCHAR(100) NOT NULL,
+            a_paterno		           	VARCHAR(100) NOT NULL,
+            a_materno			          VARCHAR(100)     NULL,
+            correo 			            VARCHAR(100) NOT NULL,
+            fecha_inicio_estudios 	DATE 	     NOT NULL,
+            fecha_fin_estudios 		  DATE 	     NOT NULL,
+            edad 		              	INT 	     NOT NULL,
+            id_equipo	 		          INT 	     NOT NULL,
+            PRIMARY KEY(id_concursante),
+            FOREIGN KEY(id_equipo) REFERENCES Equipo(id_equipo)
+            );
+
+
+            CREATE TABLE Coach (
+            id_coach		  INT 	       NOT NULL AUTO_INCREMENT,
+            nombre		    VARCHAR(100) NOT NULL,
+            a_paterno		  VARCHAR(100) NOT NULL,
+            a_materno	   	VARCHAR(100) 	   NULL,
+            correo 		    VARCHAR(100) NOT NULL,
+            id_equipo	 	  INT 	       NOT NULL,
+            PRIMARY KEY(id_coach),
+            FOREIGN KEY(id_equipo) REFERENCES Equipo(id_equipo)
+            );
+
+
+            CREATE TABLE Competencia (
+            id_competencia 	    INT 	      NOT NULL AUTO_INCREMENT,
+            tipo 		            VARCHAR(50) NOT NULL,
+            fecha 		          DATE   	    NOT NULL,
+            PRIMARY KEY(id_competencia)
+            );
+
+
+            CREATE TABLE Problema (
+            id_problema 	      INT         NOT NULL AUTO_INCREMENT,
+            nombre 		          CHAR(1),
+            descripcion 	      TEXT        NOT NULL,
+            id_competencia 	    INT         NOT NULL,
+            PRIMARY KEY(id_problema),
+            FOREIGN KEY(id_competencia) REFERENCES Competencia(id_competencia)
+            );
+
+
+            CREATE TABLE Ranking (
+            id_rank 			    INT NOT NULL AUTO_INCREMENT,
+            posicion 			    INT NOT NULL,
+            puntaje_fecha 		INT NOT NULL,
+            id_equipo	 	    	INT NOT NULL,
+            id_competencia 		INT NOT NULL,
+            PRIMARY KEY(id_rank),
+            FOREIGN KEY(id_equipo) REFERENCES Equipo(id_equipo)
+            FOREIGN KEY(id_competencia) REFERENCES Competencia(id_competencia)
+            );
+
+   ```
+
+   
+
