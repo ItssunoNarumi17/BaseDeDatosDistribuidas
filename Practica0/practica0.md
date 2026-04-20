@@ -89,7 +89,7 @@ Un sistema distribuido puede integrar nodos con gestores de bases de datos disti
 
 ## Evidencia 
 
-![Imagen 1](Practica0_1.jpng)
+![Imagen 1](Practica0_1.png)
 
-![Imagen 2](Practica0_2.jpng)
+![Imagen 2](Practica0_2.png)
 
