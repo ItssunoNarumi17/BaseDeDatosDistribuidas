@@ -217,3 +217,70 @@ Este podría ser un ejemplo de ruta para dicha carpeta:
 ```
     C:\ProgramData\MySQL\MySQL Server 8.0
 ```
+Las modificaciones serán:
+  *Computadora Principal*
+  Se agregaran tres lineas en el apartado de *SERVER SECTION* que permitaran la conexión para la replicación de la base de datos.
+  -La primera línea permite la conexion al momento del inicio de sesión junto con la tercer linea.
+  -La segunda linea es sobre que base de datos se trabajara.
+```
+    log-bin-mysql-bin
+    binlog-do-db-ICPC_Mexico
+    sync-binlog=1
+```
+  Y sobre el mismo apartado *SERVER SECTION*, bajamos un poco y encontraremos una sección llamada *Group Replication Related*, donde en su ultima linea la deshabilitaremos usando un *#*.
+  Ejemplo:
+  ```
+    # ***** Group Replication Related *****
+    # Specifies the base name to use for binary log files. With binary logging
+    # enabled, the server logs all statements that change data to the binary
+    # log, which is used for backup and replication.
+    #log-bin="XZYLAS-bin" //se agrego el #
+  ```
+  En la sección que se encuentra debajo de la anterior mencionada llamada *Group Replication Related*, en su ultima linea se dejara igual para el caso de ser la computadora *servidor*.
+  Ejemplo:
+  ```
+    # ***** Group Replication Related *****
+    # Specifies the server ID. For servers that are used in a replication topology,
+    # you must specify a unique server ID for each replication server, in the
+    # range from 1 to 2^32 − 1. "Unique" means that each ID must be different
+    # from every other ID in use by any other source or replica.
+    server-id=1
+  ```
+  Para el caso de la segunda computadora se se asignara como número *2*, es decir:
+```
+    # ***** Group Replication Related *****
+    # Specifies the server ID. For servers that are used in a replication topology,
+    # you must specify a unique server ID for each replication server, in the
+    # range from 1 to 2^32 − 1. "Unique" means that each ID must be different
+    # from every other ID in use by any other source or replica.
+    server-id=2
+  ```
+*Computadora Secundaria*
+  Para esta computadora solo se haran dos modificaciónes:
+  -En el apartado de *SERVER SECTION* solo se agregara una línea al inicio de este.
+  ```
+  # 
+    [mysqld]
+    log-bin-mysql-bin
+    # The next three options are mutually exclusive to SERVER_PORT below.
+    # skip-networking
+    # enable-named-pipe
+    # shared-memory
+  ```
+  -La otra modificación es la anterior mencionada: Y sobre el mismo apartado *SERVER SECTION*, bajamos un poco y encontraremos una sección llamada *Group Replication Related*, donde en su ultima linea la deshabilitaremos usando un *#*.
+
+
+Al finalizar estos cambios, guardamos, y en ambos dispositivos se hara el reinicio de los servivios de *MySQL* utilizando el comando:
+ ```
+    boton windows + r
+  ```
+Escribiendo el siguiente comando:
+  ```
+    services.msc
+  ```
+Buscando los servicios para proceder a hacer click derecho y presionar reiniciar.
+
+
+# *Creación de usuario*
+_______________________________
+  
