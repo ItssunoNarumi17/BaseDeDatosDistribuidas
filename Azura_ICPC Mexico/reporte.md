@@ -123,8 +123,8 @@ Para este proyecto se utilizó Azure Database for MySQL Flexible Server por su f
 | Usuario administrador | islas_vlad |
 
 _______________________________
-|
-# *Configuración de Azure Database for MySQL*
+
+# *Conexión al servidor desde Azure Query Editor/WorkBench*
 
  *Opción A: Query Editor (recomendado para empezar)*
 
@@ -155,8 +155,181 @@ _______________________________
     Password: (tu contraseña) 
 
 
+_______________________________
+
+# *Creación de la base de datos*
+
+1. Una vez dentro, procedemos a crear nuestra *base de datos*.
+   ```sql
+   mysql> CREATE DATABASE icpc_mexico;
+   ```
+   
+3. Usamos la *base de datos* ya creada.
+   ```sql
+   mysql> USE icpc_mexico;
+   ```
+
+4. Ya en la *base de datos*, ingresamos las sentencias *SQL* para crear las tablas.
+   ```sql
+       mysql>
+             CREATE TABLE Equipo (
+             id_equipo      INT NOT NULL AUTO_INCREMENT,
+             nombre_equipo  VARCHAR(100) NOT NULL,
+             PRIMARY KEY (id_equipo)
+             );
 
 
+             CREATE TABLE Coach (
+             id_coach       INT NOT NULL AUTO_INCREMENT,
+             nombre         VARCHAR(100) NOT NULL,
+             a_paterno      VARCHAR(100) NOT NULL,
+             a_materno      VARCHAR(100) NULL,
+             correo         VARCHAR(100) NOT NULL,
+             id_equipo      INT NOT NULL,
+             rol            ENUM('coach', 'cocoach') DEFAULT 'cocoach',
+             PRIMARY KEY (id_coach),
+             FOREIGN KEY (id_equipo) REFERENCES Equipo(id_equipo)
+             );
 
 
+             CREATE TABLE Concursante (
+             id_concursante         INT NOT NULL AUTO_INCREMENT,
+             nombre                 VARCHAR(100) NOT NULL,
+             a_paterno              VARCHAR(100) NOT NULL,
+             a_materno              VARCHAR(100) NULL,
+             correo                 VARCHAR(100) NOT NULL,
+             fecha_inicio_estudios  DATE NOT NULL,
+             fecha_fin_estudios     DATE NOT NULL,
+             id_equipo              INT NOT NULL,
+             rol                    ENUM('titular', 'suplente') DEFAULT 'titular',
+             PRIMARY KEY (id_concursante),
+             FOREIGN KEY (id_equipo) REFERENCES Equipo(id_equipo)
+             );
+
+
+             CREATE TABLE Competencia (
+             id_competencia  INT NOT NULL AUTO_INCREMENT,
+             tipo            VARCHAR(50) NOT NULL,
+             fecha           DATE NOT NULL,
+             PRIMARY KEY (id_competencia)
+             );
+
+
+             CREATE TABLE Problema (
+             id_problema     INT NOT NULL AUTO_INCREMENT,
+             nombre          VARCHAR(100),
+             descripcion     TEXT NOT NULL,
+             id_competencia  INT NOT NULL,
+             PRIMARY KEY (id_problema),
+             FOREIGN KEY (id_competencia) REFERENCES Competencia(id_competencia)
+             );
+
+
+            CREATE TABLE Ranking (
+            id_rank         INT NOT NULL AUTO_INCREMENT,
+            posicion        INT NOT NULL,
+            puntaje_fecha   INT NOT NULL,
+            id_equipo       INT NOT NULL,
+            id_competencia  INT NOT NULL,
+             PRIMARY KEY (id_rank),
+            FOREIGN KEY (id_equipo) REFERENCES Equipo(id_equipo),
+            FOREIGN KEY (id_competencia) REFERENCES Competencia(id_competencia)
+            );
+
+   ```
+
+5. Con las tablas ya en nuestra *base de datos*, podemos proceder a poblarla.
+   ```sql
+       mysql>
+              INSERT INTO Equipo (nombre_equipo) VALUES ('Prófugos del Citis'), ('Guerreros Digitales');
+
+                INSERT INTO Coach (nombre, a_paterno, a_materno, correo, id_equipo, rol) VALUES
+                ('Ana', 'García', 'López', 'ana@mail.com', 1, 'head'),
+                ('Carlos', 'Ramírez', NULL, 'carlos@mail.com', 1, 'assistant'),
+                ('Luis', 'Fernández', 'Mendoza', 'luis@mail.com', 2, 'head');
+
+   INSERT INTO Concursante (nombre, a_paterno, a_materno, correo, fecha_inicio_estudios, fecha_fin_estudios, id_equipo, rol) VALUES
+                ('Juan', 'Pérez', 'Gómez', 'juan@mail.com', '2023-01-15', '2024-12-15', 1, 'titular'),
+                ('María', 'López', 'Ruiz', 'maria@mail.com', '2023-01-15', '2024-12-15', 1, 'titular'),
+                ('Pedro', 'Sánchez', NULL, 'pedro@mail.com', '2023-06-01', '2025-06-01', 1, 'suplente'),
+                ('Laura', 'Martínez', 'Flores', 'laura@mail.com', '2023-02-10', '2024-11-30', 2, 'titular');
+
+               INSERT INTO Competencia (tipo, fecha) VALUES
+                ('Repechaje', '2024-03-10'),
+                ('Fecha 0', '2024-04-15');
+
+               INSERT INTO Problema (nombre, descripcion, id_competencia) VALUES
+                ('A', 'Ordenamiento de burbuja', 1),
+                ('B', 'Árbol binario', 1);
+
+               INSERT INTO Ranking (posicion, puntaje_fecha, id_equipo, id_competencia) VALUES
+                (1, 100, 1, 1),
+                (2, 85, 2, 1);
+   
+   ```
+
+
+_______________________________
+
+# *Configuración de Usuarios y Permisos*
+
+
+Para simular una arquitectura distribuida con Maestro (escrituras) y Esclavo (solo lectura), se crearon dos usuarios con diferentes privilegios dentro del mismo servidor de Azure.
+
+*1. Usuario existente (Maestro)*
+El usuario islas_vlad creado al configurar el servidor ya tiene todos los permisos sobre todas las bases de datos.
+
+*2. Creación del usuario Esclavo (solo lectura)*
+Desde el Query Editor de Azure o MySQL Workbench, se ejecutaron los siguientes comandos:
+
+   ```sql
+        mysql>
+            -- Crear el usuario de solo lectura
+            CREATE USER 'lectura'@'%' IDENTIFIED BY 'ContraseñaSegura123';
+
+            -- Otorgar solo permiso de SELECT sobre la base de datos
+            GRANT SELECT ON competencias_db.* TO 'lectura'@'%';
+
+            -- Aplicar los cambios de privilegios
+            FLUSH PRIVILEGES;
+   
+   ```
+
+*3. Verificación de permisos*
+Para comprobar que el usuario lectura solo puede leer, se realizaron las siguientes pruebas:
+
+```sql
+        mysql>
+            -- Conectar como usuario 'lectura'
+
+            -- Esto funciona (SELECT permitido)
+            SELECT * FROM Equipo;
+
+            -- Esto da ERROR (INSERT denegado)
+            INSERT INTO Equipo (nombre_equipo) VALUES ('Equipo Prueba');
+
+            -- Esto da ERROR (UPDATE denegado)
+            UPDATE Equipo SET nombre_equipo = 'Nuevo Nombre' WHERE id_equipo = 1;
+
+            -- Esto da ERROR (DELETE denegado)
+            DELETE FROM Equipo WHERE id_equipo = 1;
+   
+   ```
+
+*4. Configuración del firewall para múltiples computadoras
+Para permitir que otros dispositivos se conecten al servidor de Azure, se agregaron sus direcciones IP en la sección "Networking" del servidor:
+
+    En el portal de Azure → Servidor icpc-mexico → Networking
+
+    En "Firewall rules" → "+ Add firewall rule"
+
+Se agregó:
+
+    Rule name: laptop-compañero
+
+    Start IP: IP pública de la otra computadora
+
+    End IP: misma IP
+
+Se hizo clic en "Save"
 
