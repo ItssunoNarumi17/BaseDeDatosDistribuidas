@@ -73,8 +73,9 @@ erDiagram
 ```
 
 _______________________________
-
+|
 # *Configuración de Azure Database for MySQL*
+
 1. Creación de la cuenta y el servidor
 
 Para este proyecto se utilizó Azure Database for MySQL Flexible Server por su facilidad de configuración y su capa gratuita.
@@ -109,4 +110,53 @@ Para este proyecto se utilizó Azure Database for MySQL Flexible Server por su f
 -Se hizo clic en "Revisar y crear" y luego en "Crear".
 
 -Se esperó aproximadamente 5-10 minutos hasta que el despliegue finalizó.
+
+
+
+2. Obtención de los datos de conexión
+   Una vez creado el servidor, se obtuvieron los siguientes datos desde la sección "Overview":
+
+| Dato | Valor |
+| --------- | --------- |
+| Nombre del servidor | icpc-mexico.mysql.database.azure.com |
+| Puerto | 3306 |
+| Usuario administrador | islas_vlad |
+
+_______________________________
+|
+# *Configuración de Azure Database for MySQL*
+
+ *Opción A: Query Editor (recomendado para empezar)*
+
+  En el menú izquierdo de tu servidor, busca y selecciona "Query editor" (Editor de consultas) 
+
+  Inicia sesión con:
+ 
+      Usuario: islas_vlad
+
+      Contraseña: (la que creaste)
+
+  Una vez dentro, puedes escribir y ejecutar comandos SQL directamente
+
+*Opción B: MySQL Workbench (desde tu computadora)*
+
+  Si prefieres usar MySQL Workbench:
+
+  Abre MySQL Workbench
+
+  Crea una nueva conexión con:
+
+    Hostname: icpc-mexico.mysql.database.azure.com
+
+    Port: 3306
+
+    Username: islas_vlad
+
+    Password: (tu contraseña) 
+
+
+
+
+
+
 
