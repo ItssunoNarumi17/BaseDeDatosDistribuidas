@@ -5,7 +5,6 @@ _______________________________
 
 La información para la *BD* se obtuvo mediante una explicación/plática que se tuvo con el docente simulando un caso real de una consulta para la realización de un *SGBD* donde tomó el rol de un cliente explicando su caso, mientras que nosotros eramos el experto obteniendo información mediante preguntas para poder interpretar lo que él necesita.
 
-![Representación Visual de la Idea del Cliente](Ejemplo.png)
 
 Se siguió esta representación para poder realizar todo lo pertinente para la práctica, adaptándola a una arquitectura distribuida en la nube.
 
@@ -332,4 +331,40 @@ Se agregó:
     End IP: misma IP
 
 Se hizo clic en "Save"
+
+
+_______________________________
+
+# *Capa de Software*
+
+Se desarrolló una capa de software en Python con interfaz gráfica utilizando Tkinter (incluido por defecto en Python). Esta capa se encarga de enrutar las operaciones según su tipo: escrituras al usuario MASTER y lecturas al usuario SLAVE.
+
+*Instalación de dependencias
+
+    pip install mysql-connector-python
+
+
+
+```py
+        
+# config.py - Configuración para Azure
+
+CONFIG = {
+    # Usuario MASTER (todos los permisos)
+    'MASTER': {
+        'host': 'icpc-mexico.mysql.database.azure.com',
+        'user': 'islas_vlad',
+        'password': 'TU_CONTRASEÑA_MAESTRO',
+        'database': 'competencias_db'
+    },
+    # Usuario SLAVE (solo lectura)
+    'SLAVE': {
+        'host': 'icpc-mexico.mysql.database.azure.com',
+        'user': 'lectura',
+        'password': 'TU_CONTRASEÑA_LECTURA',
+        'database': 'competencias_db'
+    }
+}
+ 
+   ```
 
