@@ -98,6 +98,7 @@ Para este proyecto se utilizó Azure Database for MySQL Flexible Server por su f
 | Usuario administrador | islas_vlad |
 | Contraseña | ******************* |
 
+
    -En la pestaña "Networking", se marcó la opción:
       ☑ Agregar regla de firewall para la dirección IP actual
    -Se hizo clic en "Revisar y crear" y luego en "Crear".
