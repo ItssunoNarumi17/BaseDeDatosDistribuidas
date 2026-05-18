@@ -80,10 +80,14 @@ _______________________________
 Para este proyecto se utilizó Azure Database for MySQL Flexible Server por su facilidad de configuración y su capa gratuita.
     
  Pasos realizados:
-    -Se creó una cuenta en portal.azure.com con tarjeta de débito para verificación (sin costo inicial).
-    -En el buscador se escribió: Azure Database for MySQL flexible servers
-    -Se seleccionó "Creación rápida" (Quick Create) para simplificar el proceso.
-    -Se configuraron los siguientes parámetros:
+
+-Se creó una cuenta en portal.azure.com con tarjeta de débito para verificación (sin costo inicial).
+
+-En el buscador se escribió: Azure Database for MySQL flexible servers
+
+-Se seleccionó "Creación rápida" (Quick Create) para simplificar el proceso
+
+-Se configuraron los siguientes parámetros:
 
 | Parámetro | Valor asignado |
 | --------- | --------- |
@@ -98,9 +102,11 @@ Para este proyecto se utilizó Azure Database for MySQL Flexible Server por su f
 | Usuario administrador | islas_vlad |
 | Contraseña | ******************* |
 
+-En la pestaña "Networking", se marcó la opción:
 
-   -En la pestaña "Networking", se marcó la opción:
       ☑ Agregar regla de firewall para la dirección IP actual
-   -Se hizo clic en "Revisar y crear" y luego en "Crear".
-   -Se esperó aproximadamente 5-10 minutos hasta que el despliegue finalizó.
+      
+-Se hizo clic en "Revisar y crear" y luego en "Crear".
+
+-Se esperó aproximadamente 5-10 minutos hasta que el despliegue finalizó.
 
