@@ -344,9 +344,12 @@ Se desarrolló una capa de software en Python con interfaz gráfica utilizando T
     pip install mysql-connector-python
 
 
+*Archivo config.py
+
+Este archivo contiene los datos de conexión a Azure para ambos usuarios.
 
 ```py
-        
+        python>
 # config.py - Configuración para Azure
 
 CONFIG = {
