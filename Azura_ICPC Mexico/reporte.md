@@ -70,3 +70,36 @@ erDiagram
     Equipo ||--o{ Ranking : "participa en"
     Competencia ||--o{ Problema : "incluye"
     Competencia ||--o{ Ranking : "genera"
+```
+
+_______________________________
+
+# *Configuración de Azure Database for MySQL*
+1. Creación de la cuenta y el servidor
+
+Para este proyecto se utilizó Azure Database for MySQL Flexible Server por su facilidad de configuración y su capa gratuita.
+    
+ Pasos realizados:
+    -Se creó una cuenta en portal.azure.com con tarjeta de débito para verificación (sin costo inicial).
+    -En el buscador se escribió: Azure Database for MySQL flexible servers
+    -Se seleccionó "Creación rápida" (Quick Create) para simplificar el proceso.
+    -Se configuraron los siguientes parámetros:
+
+| Parámetro | Valor asignado |
+| --------- | --------- |
+| Subscripcción | Azure subscription 1 |
+| Grupo de recursos | icpc-mexico2 |
+| Nombre del servidor | icpc_mexico |
+| Región | West US 2 |
+| Versión de MySQL | 8.0 |
+| Tipo de carga de trabajo | Desarrollo/Prueba |
+| Tamaño de proceso | Burstable B1ms (1 vCore, 2GB RAM) |
+| Almacenamiento | 20GB |
+| Usuario administrador | islas_vlad |
+| Contraseña | ******************* |
+
+   -En la pestaña "Networking", se marcó la opción:
+      ☑ Agregar regla de firewall para la dirección IP actual
+   -Se hizo clic en "Revisar y crear" y luego en "Crear".
+   -Se esperó aproximadamente 5-10 minutos hasta que el despliegue finalizó.
+
